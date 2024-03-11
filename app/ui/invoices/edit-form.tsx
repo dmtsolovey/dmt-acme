@@ -70,7 +70,14 @@ export default function EditInvoiceForm({
             </div>
           </div>
         </div>
-
+        <div id="customer-error" aria-live="polite" aria-atomic="true">
+          {state.errors?.amount &&
+            state.errors.amount.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
+        </div>
         {/* Invoice Status */}
         <fieldset>
           <legend className="mb-2 block text-sm font-medium">
@@ -113,6 +120,15 @@ export default function EditInvoiceForm({
             </div>
           </div>
         </fieldset>
+        {state.errors?.status &&
+          state.errors.status.map((error: string) => (
+            <p className="mt-2 text-sm text-red-500" key={error}>
+              {error}
+            </p>
+          ))}
+        {state.message && (
+          <p className="mt-2 text-sm text-red-500">{state.message}</p>
+        )}
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
